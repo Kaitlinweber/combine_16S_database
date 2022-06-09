@@ -6,8 +6,6 @@ import pathlib
 from pathlib import Path
 import os
 
-
-
 def get_database_files(file_path):
     ''' Iterates over each directory, collecting all the database files
     '''
@@ -77,7 +75,6 @@ def extract_from_database_files(files):
                                     
                                     line.replace(scientific_name_organism, scientific_name)
                                     scientific_name_list.append(scientific_name_organism)
-                              
 
                             
                     if "ORIGIN" in line:
@@ -99,13 +96,11 @@ def extract_from_database_files(files):
              
                 filename_sequence_combo_list.append(scientific_name_organism.strip())
                 filename_sequence_combo_list.append(organism_sequence_list)
-              
-         
+            
                 
                 # list with data to dictionary (filename=key and value=scientific name + sequence)
                 complete_dict_for_kraken[file_name] = filename_sequence_combo_list
 
-            
 
             elif 'DEFINITION' in new_contents:
                 
@@ -126,8 +121,6 @@ def extract_from_database_files(files):
                     if 'ORIGIN' in line:
                         always_print_def = True
                     if always_print_def:
-
-                        #TODO haal de \r\n eruit .strip()
                         origin = line.replace('ORIGIN', '').replace('//', '')
                         sequence = ''.join((x for x in origin if not x.isdigit()))
                         sequence = sequence.upper()
@@ -151,10 +144,13 @@ def extract_from_database_files(files):
 
 
 def filter_dict(sequence_dict_incl_taxid):
+    ''' Filters dictionary if there is no taxonomy ID, because kraken database needs
+    taxonomy ID
+    ''' 
     filtered_dictionary = {}
     for item in sequence_dict_incl_taxid:
-        list_with_species_info2 = sequence_dict_incl_taxid[item]
-        tax_id = list_with_species_info2[0]
+        list_with_scientific_names = sequence_dict_incl_taxid[item]
+        tax_id = list_with_scientific_names[0]
         #filter if there is no taxid
         if len(tax_id) > 0:
             sequence_dict_incl_taxid[item]
@@ -182,6 +178,8 @@ def get_taxonomy_ID(complete_dict_for_kraken):
     return complete_dict_for_kraken
 
 def create_multiFASTA(filtered_sequence_dictionary, output_dir):
+    ''' Creates multifasta files from the filtered sequence dictionary
+    '''
     count = 0
     tax_id_string = '|kraken:taxid|' # creates header compatible with Kraken database
     counter_list = []
