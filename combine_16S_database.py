@@ -139,7 +139,7 @@ def extract_from_database_files(files):
                 # list with data to dictionary (filename=key and value=scientific name + sequence)
                 complete_dict_for_kraken[file_name] = filename_sequence_combo_list_def
                 final_sequences.append(sequence_definition)
-
+    print(file_counter)
     return complete_dict_for_kraken
 
 
@@ -154,7 +154,7 @@ def filter_dict(sequence_dict_incl_taxid):
         #filter if there is no taxid
         if len(tax_id) > 0:
             sequence_dict_incl_taxid[item]
-            filetered_dictionary[item] = sequence_dict_incl_taxid[item]   
+            filtered_dictionary[item] = sequence_dict_incl_taxid[item]   
     return filtered_dictionary
 
 
