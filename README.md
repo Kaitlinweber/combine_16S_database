@@ -33,19 +33,14 @@ conda env install -f envs/database_env.yaml
 
 ### Required parameters
 
-* ```-i, --input```  Kraken summary kreport from ExId16S results, based on the custom made database.
-* ```-w, --wgs``` Kraken summary kreport obtained from Kraken2 and Bracken with WGS data.
-* ```-s, --sample_list``` Excel sheet with 16S rDNA Sanger sequencing results, with the sample number, genus name and species name in a seperate column. 
+* ```-db, --database```  Path to directory, which can have multiple subdirectories with 16S rDNA information. The files need to contain ORGANSIM/DEFENITION (for extraction scientific name), ORIGIN (for extraction sequence) (format derived from Genbank format, but in text file format)
+* ```-e, --email``` Email which is linked to a NCBI account, this is for obtaining the taxonomy ID, which is required for building a Kraken 2 database.
 * ```-o, --output``` Pathway to output directory, if directory does not exists, directory will be created
 
-
-### Optional parameters
-
-* ```-si, --silva``` For the comparison of the created database with the SILVA database, the pathway to the SILVA database Kraken kreports can be given here
 
 
 ### The base command to run this script 
 
 ```
-python  -i [path/to/input/dir/ExId16S] -w [path/to/input/dir/WGS] -s [path/to/input/dir/16S_sequencing] -o [path/to/output/dir] 
+python  -db [path/to/input/dir/16Sdata] -o [email from NCBI] -o [path/to/output/dir] 
 ```
