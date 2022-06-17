@@ -1,7 +1,7 @@
 <div align="center">
     <h1>Custom 16S database for Kraken</h1>
     <br />
-    <h2>Script which combines text files with 16S data to multi-FASTA file, compatibel with Kraken</h2>
+    <h2>Script which combines text files with 16S data to multi-FASTA file, compatible with Kraken</h2>
     <br />
 </div>
 
@@ -27,7 +27,7 @@ git clone https://github.com/Kaitlinweber/combine_16S_database
 2. Enter the directory with the pipeline and install the conda environment:
 
 ```
-cd exid16s_validation
+cd combine_16S_database
 conda env install -f envs/database_env.yaml
 ```
 
