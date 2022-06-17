@@ -42,5 +42,5 @@ conda env install -f envs/database_env.yaml
 ### The base command to run this script 
 
 ```
-python  -db [path/to/input/dir/16Sdata] -o [email from NCBI] -o [path/to/output/dir] 
+python combine_16S_database.py -db [path/to/input/dir/16Sdata] -o [email from NCBI] -o [path/to/output/dir] 
 ```
